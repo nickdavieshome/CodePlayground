@@ -40,4 +40,10 @@ std::vector<std::string> to_string_mytypes(const Param& ... param)
 	return {to_string_mytypes_impl(param)...};
 }
 
+class VariadicTemplateTest
+{
+public:
+	static void TestVariadicTemplate();
+};
+
 #endif /* VariadicTemplateTest_h */
