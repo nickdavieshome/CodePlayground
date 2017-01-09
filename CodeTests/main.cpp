@@ -7,56 +7,18 @@
 //
 
 #include <iostream>
-#include "Widget.hpp"
+#include "InitializerTest.h"
+#include "LambdaTest.h"
 #include "VariadicTemplateTest.h"
-
-class FTestClass1
-{
-	public:
-	const std::string ToString() const
-	{
-		return "hello";
-	}
-};
-
-class FTestClass2
-{
-	public:
-	const std::string ToString() const
-	{
-		return "hello 2";
-	}
-};
 
 
 int main(int argc, const char * argv[]) {
-	// insert code here...
-	std::cout << "Hello, World test!\n";
-	Widget{10, true};
-	Widget W2({});
-	std::cout << "Completed!\n";
 
+	InitializerTest::TestInitializer();
+	
+	VariadicTemplateTest::TestVariadicTemplate();
 
-	// Variadic Template example
-	// Pass in any intrinsic type
-
-	const auto vec = to_string("Hello", 1, 5.3, "World", 1.3, true);
-
-	for (const auto &o : vec)
-	{
-		std::cout << o << "\n";
-	}
-
-	const FTestClass1 TestClass1 = FTestClass1();
-	const FTestClass2 TestClass2 = FTestClass2();
-
-	const auto vec2 = to_string_mytypes(TestClass1, TestClass2);
-
-	for (const auto &o : vec2)
-	{
-		std::cout << o << "\n";
-	}
-
+	LambdaTest::TestLambdas();
 
     return 0;
 }
