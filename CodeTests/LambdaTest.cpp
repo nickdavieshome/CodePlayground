@@ -29,14 +29,34 @@ std::function<bool(int)> create_function()
 	};
 };
 
+class TestClass{
+public:
+	void SetTrue(bool bNewValue)
+	{
+		Visible = bNewValue;
+	}
+
+	bool GetVisibility()
+	{
+		return Visible;
+	}
+
+	private:
+	bool Visible{true};
+};
+
+
 void LambdaTest::TestLambdas()
 {
+
+	// Simple lambda. Takes nothing, and just prints withing the function.
 	cout << "LambdaTest\n";
 	auto lambda = []() { cout << "Code within a lambda expression" << endl; };
 	lambda();
 
 ///////
 
+	// Lambda that takes 2 ints, and returns a value
 	auto sum = [](int x, int y) { return x + y; };
 	cout << sum(5, 2) << endl;
 	cout << sum(10, 5) << endl;
@@ -47,12 +67,15 @@ void LambdaTest::TestLambdas()
 
 //////
 
+	// lambda used in count_if function. Takes int from iterator
 	auto greater_than_5_count = count_if(numbers.begin(), numbers.end(), [](int x) { return (x > 5); });
 	cout << "The number of elements greater than 5 is: "
 		<< greater_than_5_count << "." << endl;
 
 //////
 
+	// for_each that takes a simple lambda that just returns the value passed in
+	cout << "for_each that takes a simple lambda that just returns the value passed in: ";
 	for_each(numbers.begin(), numbers.end(), [] (int y)
 	{
 		cout << y << endl;
@@ -62,6 +85,7 @@ void LambdaTest::TestLambdas()
 
 	int divisor = 3;
 //////
+	// Lambda that captures divisor
 	for_each(numbers.begin(), numbers.end(), [divisor] (int y)
 	{
 		if (y % divisor == 0)
@@ -72,6 +96,7 @@ void LambdaTest::TestLambdas()
 
 /////
 
+	// lambda that captures all vars by value
 	for_each(numbers.begin(), numbers.end(), [=] (int y)
 	{
 		if (y % divisor == 0)
@@ -82,6 +107,7 @@ void LambdaTest::TestLambdas()
 
 /////
 
+	// lamda that captures divisor, and ref to NewSum.
 	int NewSum = 0;
 	for_each(numbers.begin(), numbers.end(), [divisor, &NewSum] (int y)
 	{
@@ -105,11 +131,24 @@ void LambdaTest::TestLambdas()
 	{
 		cout << z * 2 << endl;
 	};
- 
+
+ 	// passing lambda
 	run_within_for_each(func1);
     run_within_for_each(func2);
 
+	auto TestClassInst = TestClass();
+
+	auto VisibilityLambda = [](bool Visibility){ Visibility ? cout << "Visible\n" : cout << "Hidden\n";};
+
+	VisibilityLambda(TestClassInst.GetVisibility());
+
+	TestClassInst.SetTrue(false);
+
+	VisibilityLambda(TestClassInst.GetVisibility());
+
 //////////
+
+	// creating a lamda from a function
 
 	run_within_for_each(create_function());
 

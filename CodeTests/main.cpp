@@ -10,15 +10,18 @@
 #include "InitializerTest.h"
 #include "LambdaTest.h"
 #include "VariadicTemplateTest.h"
+#include "QuickCheckAlgorithm.h"
 
 
 int main(int argc, const char * argv[]) {
 
-	InitializerTest::TestInitializer();
-	
-	VariadicTemplateTest::TestVariadicTemplate();
+//	InitializerTest::TestInitializer();
+//	
+//	VariadicTemplateTest::TestVariadicTemplate();
+//
+//	LambdaTest::TestLambdas();
 
-	LambdaTest::TestLambdas();
+	QuickInsertCheck::QuickInsertExample();
 
     return 0;
 }
