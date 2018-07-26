@@ -6,6 +6,7 @@
 //  Copyright © 2017 NickDavies. All rights reserved.
 //
 
+#include "stdafx.h"
 #include <stdio.h>
 #include <iostream>
 #include "VariadicTemplateTest.h"

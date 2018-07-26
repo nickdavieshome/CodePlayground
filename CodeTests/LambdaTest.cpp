@@ -6,6 +6,7 @@
 //  Copyright © 2017 NickDavies. All rights reserved.
 //
 
+#include "stdafx.h"
 #include <stdio.h>
 #include <iostream>
 #include <vector>
@@ -18,7 +19,7 @@ void run_within_for_each(std::function<void (int)> func)
 {
     vector<int> numbers{ 1, 2, 3, 4, 5, 10, 15, 20, 25, 35, 45, 50 };
  
-    for_each(numbers.begin(), numbers.end(), func);
+//    for_each(numbers.begin(), numbers.end(), func);
 }
 
 std::function<bool(int)> create_function()
@@ -68,55 +69,55 @@ void LambdaTest::TestLambdas()
 //////
 
 	// lambda used in count_if function. Takes int from iterator
-	auto greater_than_5_count = count_if(numbers.begin(), numbers.end(), [](int x) { return (x > 5); });
+/*	auto greater_than_5_count = count_if(numbers.begin(), numbers.end(), [](int x) { return (x > 5); });
 	cout << "The number of elements greater than 5 is: "
 		<< greater_than_5_count << "." << endl;
-
+		*/
 //////
 
-	// for_each that takes a simple lambda that just returns the value passed in
+/*	// for_each that takes a simple lambda that just returns the value passed in
 	cout << "for_each that takes a simple lambda that just returns the value passed in: ";
 	for_each(numbers.begin(), numbers.end(), [] (int y)
 	{
 		cout << y << endl;
 	});
-
+	*/
 ///////
 
 	int divisor = 3;
 //////
 	// Lambda that captures divisor
-	for_each(numbers.begin(), numbers.end(), [divisor] (int y)
+/*	for_each(numbers.begin(), numbers.end(), [divisor] (int y)
 	{
 		if (y % divisor == 0)
 		{
 			cout << y << endl;
 		}
-	});
+	});*/
 
 /////
 
 	// lambda that captures all vars by value
-	for_each(numbers.begin(), numbers.end(), [=] (int y)
+/*	for_each(numbers.begin(), numbers.end(), [=] (int y)
 	{
 		if (y % divisor == 0)
     	{
         	cout << y << endl;
     	}
-	});
+	});*/
 
 /////
 
 	// lamda that captures divisor, and ref to NewSum.
 	int NewSum = 0;
-	for_each(numbers.begin(), numbers.end(), [divisor, &NewSum] (int y)
+/*	for_each(numbers.begin(), numbers.end(), [divisor, &NewSum] (int y)
 	{
 		if (y % divisor == 0)
 		{
 			cout << y << endl;
 			NewSum += y;
 		}
-	});
+	});*/
  
 	cout << NewSum << endl;
 
