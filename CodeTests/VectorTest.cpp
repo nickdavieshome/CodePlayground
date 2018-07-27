@@ -32,14 +32,13 @@ void VectorTest::TestVectors()
 
 	std::cout << "Angle: " << Normalized.GetAngle(VectorB.Normalize()) << "\n";
 
-	std::cout << "DotProd: " << NewVector.DotProd(VectorB) << "\n";
-
+	std::cout << "DotProd: " << (NewVector | VectorB) << "\n";
 	{
 	NDVector Vector1(0,1,0), VectorT(1,1,0);
 	VectorT.PrintVector();
 	NDVector Vector2 = VectorT.Normalize();
 	std::cout << "Angle: " << Vector2.GetAngle(Vector1) << "\n";
-	std::cout << "Dot: " << Vector2.DotProd(Vector1) << "\n";
+	std::cout << "Dot: " << NDVector::DotProd(Vector2, Vector1) << "\n";
 	std::cout << "\n";
 	}
 
@@ -48,7 +47,7 @@ void VectorTest::TestVectors()
 	VectorT.PrintVector();
 	NDVector Vector2 = VectorT.Normalize();
 	std::cout << "Angle: " << Vector2.GetAngle(Vector1) << "\n";
-	std::cout << "Dot: " << Vector2.DotProd(Vector1) << "\n";
+	std::cout << "Dot: " << (Vector2|Vector1) << "\n";
 	std::cout << "\n";
 	}
 
@@ -57,7 +56,7 @@ void VectorTest::TestVectors()
 	VectorT.PrintVector();
 	NDVector Vector2 = VectorT.Normalize();
 	std::cout << "Angle: " << Vector2.GetAngle(Vector1) << "\n";
-	std::cout << "Dot: " << Vector2.DotProd(Vector1) << "\n";
+	std::cout << "Dot: " << (Vector2 | Vector1) << "\n";
 	std::cout << "\n";
 	}
 
@@ -65,10 +64,10 @@ void VectorTest::TestVectors()
 	NDVector Vector1(0,1,0), Vector2(-1,1,0);
 	Vector2.PrintVector();
 	std::cout << "Angle: " << Vector1.GetAngle(Vector2) << "\n";
-	std::cout << "Dot: " << Vector1.DotProd(Vector2.Normalize()) << "\n";
+	std::cout << "Dot: " << (Vector1|Vector2.Normalize()) << "\n";
 	NDVector Vector1Perp = Vector1.CrossProd(NDVector(0,0,1));
 	Vector1Perp.PrintVector();
-	std::cout << "Dot: " << Vector1Perp.DotProd(Vector2.Normalize()) << "\n";
+	std::cout << "Dot: " << (Vector1Perp|Vector2.Normalize()) << "\n";
 	std::cout << "\n";
 	}
 

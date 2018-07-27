@@ -22,7 +22,10 @@ public:
 
 
 	void PrintVector() const;
-	float DotProd(const NDVector& CompareVector) const;
+
+	static float DotProd(const NDVector& A, const NDVector& CompareVector);
+	float operator|(const NDVector& CompareVector) const;
+
 	float GetAngle(const NDVector& CompareVector) const;
 	NDVector CrossProd(const NDVector& CompareVector) const;
 	NDVector Normalize() const;

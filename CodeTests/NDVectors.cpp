@@ -19,7 +19,12 @@ void NDVector::PrintVector() const
 	std::cout << "Vector: " << x << "," << y << "," <<  z << "\n";
 }
 
-float NDVector::DotProd(const NDVector& V) const
+float NDVector::DotProd(const NDVector& A, const NDVector& V)
+{
+	return A|V;
+}
+
+float NDVector::operator|(const NDVector& V) const
 {
 	return (x * V.x) + (y * V.y) + (z * V.z);
 }
@@ -28,7 +33,7 @@ float NDVector::GetAngle(const NDVector& V) const
 {
 	NDVector NormalA = Normalize();
 	NDVector NormalB = V.Normalize();
-	return acos(NormalA.DotProd(NormalB)) * (180.0/3.141592653589793238463);
+	return acos(NormalA|NormalB) * (180.0/3.141592653589793238463);
 }
 
 NDVector NDVector::CrossProd(const NDVector& V) const
@@ -64,5 +69,6 @@ float NDVector::SizeSq() const
 
 NDVector NDVector::Project(const NDVector& V) const
 {
-	return NDVector(x,y,z) * (DotProd(V) / SizeSq());
+	NDVector Local = NDVector(x,y,z);
+	return Local * ((Local | V) / SizeSq());
 }
