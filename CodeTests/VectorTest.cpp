@@ -5,7 +5,6 @@
 //  Copyright © 2018 NickDavies. All rights reserved.
 //
 
-#include "stdafx.h"
 #include <stdio.h>
 #include <iostream>
 #include <vector>

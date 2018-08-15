@@ -5,11 +5,11 @@
 //  Copyright © 2018 NickDavies. All rights reserved.
 //
 
-#include "stdafx.h"
 #include <stdio.h>
 #include <iostream>
 #include <vector>
 #include <functional>
+#include <math.h>
 #include "NDVectors.h"
 
 using namespace std;
@@ -47,12 +47,22 @@ NDVector NDVector::Normalize() const
 	return NDVector(x/fSize, y/fSize, z/fSize);
 }
 
-NDVector NDVector::Add(const NDVector& V) const
+NDVector NDVector::Add(const NDVector& A, const NDVector& V)
+{
+	return A+V;
+}
+
+NDVector NDVector::operator+(const NDVector& V) const
 {
 	return NDVector(x + V.x, y + V.y, z + V.z);
 }
 
-NDVector NDVector::Subtract(const NDVector& V) const
+NDVector NDVector::Subtract(const NDVector& A, const NDVector& V)
+{
+	return A-V;
+}
+
+NDVector NDVector::operator-(const NDVector& V) const
 {
 	return NDVector(x - V.x, y - V.y, z - V.z);
 }
@@ -71,4 +81,15 @@ NDVector NDVector::Project(const NDVector& V) const
 {
 	NDVector Local = NDVector(x,y,z);
 	return Local * ((Local | V) / SizeSq());
+}
+
+NDVector NDVector::RotateVector(NDVector Origin, float angle)
+{
+	float TempX = (cos(angle) * x) - (sin(angle) * y);
+	float TempY = (sin(angle) * x) + (cos(angle) * y);
+	return NDVector(TempX, TempY, 0);
+/*	float TempX = ( (x - Origin.x) * cos(angle) ) - ( (Origin.y - y) * sin(angle) ) + Origin.x;
+	float TempY = ( (Origin.y - y) * cos(angle) ) - ( (x - Origin.x) * sin(angle) ) + Origin.y;
+	return NDVector(TempX, TempY, 0);
+	*/
 }

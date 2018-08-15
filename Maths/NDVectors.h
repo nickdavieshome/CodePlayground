@@ -29,8 +29,13 @@ public:
 	float GetAngle(const NDVector& CompareVector) const;
 	NDVector CrossProd(const NDVector& CompareVector) const;
 	NDVector Normalize() const;
-	NDVector Add(const NDVector& CompareVector) const;
-	NDVector Subtract(const NDVector& CompareVector) const;
+
+	static NDVector Add(const NDVector& A, const NDVector& V);
+	NDVector operator+(const NDVector& CompareVector) const;
+
+	static NDVector Subtract(const NDVector& A, const NDVector& CompareVector);
+	NDVector operator-(const NDVector& CompareVector) const;
+
 	float Size() const;
 	float SizeSq() const;
 	NDVector Project(const NDVector& CompareVector) const;
@@ -39,6 +44,8 @@ public:
 	{
 		return NDVector(x * Size, y * Size, z * Size);
 	}
+
+	NDVector RotateVector(NDVector Origin, float angle);
 
 public:
 	float x = 0.f;
